@@ -1,0 +1,11 @@
+# Python
+*.py[cd]
+.coverage
+__pycache__/
+.pytest_cache/
+.tox/
+
+.vscode
+.idea
+
+.env
