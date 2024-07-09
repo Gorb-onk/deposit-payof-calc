@@ -1,10 +1,11 @@
 import logging
 import os
 
-from pydantic import BaseModel
+from pydantic import BaseModel, computed_field
 
 
 class LoggingConf(BaseModel):
+    version: int = 1
     disable_existing_loggers: bool = False
 
     CONSOLE_LOG_LEVEL: str | None = None
