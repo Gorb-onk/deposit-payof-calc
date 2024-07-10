@@ -1,1 +1,1 @@
-from .deposit import *
+from .deposit import *  # noqa: F403

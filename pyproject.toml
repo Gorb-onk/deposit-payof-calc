@@ -15,6 +15,9 @@ python-dateutil = "^2.9.0.post0"
 pytest = "^8.2.2"
 gunicorn = "^22.0.0"
 uvicorn = "^0.30.1"
+ruff = "^0.5.1"
+mypy = "^1.10.1"
+types-python-dateutil = "^2.9.0.20240316"
 
 
 [build-system]

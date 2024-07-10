@@ -8,7 +8,7 @@ from app.dto import DepositPayoff
 
 
 class DepositCalculator:
-    formula = None
+    formula: Callable[[int, int], Decimal]
 
     def __init__(self, formula: Callable[[int, int], Decimal] | None = None):
         if formula:
@@ -20,8 +20,8 @@ class DepositCalculator:
         result = []
         for period in range(periods):
             period_date = start_date + relativedelta(months=period)
-            amount = self.formula(amount, rate)
-            result.append(DepositPayoff(period_date, amount))
+            amount = self.formula(amount, rate)  # type: ignore
+            result.append(DepositPayoff(period_date, amount))  # type: ignore
         return result
 
     @staticmethod

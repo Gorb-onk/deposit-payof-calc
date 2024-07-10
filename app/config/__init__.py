@@ -8,4 +8,4 @@ class Settings(BaseSettings):
     logging: LoggingConf
 
 
-settings = Settings()
+settings = Settings()  # type: ignore

@@ -25,7 +25,7 @@ def test_success(client, data):
 
 @pytest.mark.parametrize("method", ['get', 'put', 'delete', 'patch'])
 def test_unavailable_methods(client, method, base_data):
-    response = client.request(method, f"/calculate", json=base_data)
+    response = client.request(method, "/calculate", json=base_data)
     assert response.status_code == 405, response.text
 
 
