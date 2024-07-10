@@ -1,4 +1,5 @@
 from datetime import date, datetime
+from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
 
@@ -12,5 +13,8 @@ class CalculateIn(BaseModel):
     rate: int = Field(gt=0, lt=9, description='Процент по вкладу', examples=[1, 3, 6])
 
     @field_validator('request_date', mode='before')
-    def string_to_date(cls, date_str: str) -> date:
-        return datetime.strptime(date_str, CALC_DATE_FORMAT).date()
+    def string_to_date(cls, raw_date: Any) -> date:
+        if isinstance(raw_date, str):
+            return datetime.strptime(raw_date, CALC_DATE_FORMAT).date()
+        else:
+            return raw_date

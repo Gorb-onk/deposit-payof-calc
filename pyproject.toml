@@ -12,6 +12,7 @@ pydantic-settings = "^2.3.4"
 sentry-sdk = "^2.8.0"
 coverage = "^7.5.4"
 python-dateutil = "^2.9.0.post0"
+pytest = "^8.2.2"
 
 
 [build-system]
