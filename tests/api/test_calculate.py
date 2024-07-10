@@ -20,7 +20,7 @@ def test_success(client, data):
     assert len(response_data) == data['periods']
     for key, value in response_data.items():
         datetime.strptime(key, '%d.%m.%Y').date()
-        assert isinstance(value, int), (key, value)
+        assert isinstance(value, float), (key, value)
 
 
 @pytest.mark.parametrize("method", ['get', 'put', 'delete', 'patch'])
