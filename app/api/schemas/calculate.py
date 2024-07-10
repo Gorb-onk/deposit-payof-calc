@@ -3,6 +3,8 @@ from typing import Any
 
 from pydantic import BaseModel, Field, field_validator
 
+from app.dto import DepositPayoff
+
 CALC_DATE_FORMAT = '%d.%m.%Y'
 
 
@@ -18,3 +20,11 @@ class CalculateIn(BaseModel):
             return datetime.strptime(raw_date, CALC_DATE_FORMAT).date()
         else:
             return raw_date
+
+
+def format_calculate_out(payoffs: list[DepositPayoff]) -> dict:
+    result = {}
+    for payoff in sorted(payoffs, key=lambda x: x.date):
+        date_str = payoff.date.strftime(CALC_DATE_FORMAT)
+        result[date_str] = "{:.2f}".format(payoff.amount)
+    return result

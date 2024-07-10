@@ -1,13 +1,11 @@
-from dateutil.relativedelta import relativedelta
+from fastapi import Depends
 
 from app.api import app
-from app.api.schemas import CalculateIn, CALC_DATE_FORMAT
+from app.api.schemas import CalculateIn, format_calculate_out
+from app.api.dependencies import calculator_dependency
 
 
 @app.post("/calculate")
-def process_transaction(data: CalculateIn) -> dict[str, int]:
-    result = {}
-    for i in range(data.periods):
-        date = data.request_date + relativedelta(months=i)
-        result[date.strftime(CALC_DATE_FORMAT)] = i
-    return result
+def process_transaction(data: CalculateIn, calculator=Depends(calculator_dependency)) -> dict[str, float]:
+    dep_payoffs = calculator.calculate(data.request_date, periods=data.periods, amount=data.amount, rate=data.rate)
+    return format_calculate_out(dep_payoffs)
